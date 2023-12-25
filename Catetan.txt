@@ -1,0 +1,66 @@
+
+Dashboard --> Member
+
+Orders --> Input 
+
+Services --> Update 
+
+Settings --> Read + Search
+
+CREATE TABLE TMember (
+    IDMember char(4),
+    NamaMember varchar(20),
+    NoTelpon int,
+    TanggalLahir date,
+    PRIMARY KEY (IDMember)
+);
+
+CREATE TABLE TBuku (
+    IDBuku char(4),
+    JudulBuku varchar(20),
+    Genre varchar(20),
+    TahunTerbit int,
+    PRIMARY KEY (IDBuku)
+);
+
+CREATE TABLE TPenerbit (
+    IDPenerbit char(4),
+    NamaPenerbit varchar(20),
+    IDBuku char(4),
+    PRIMARY KEY (IDPenerbit),
+    FOREIGN KEY (IDBuku) REFERENCES TBuku(IDBuku)
+);
+
+CREATE TABLE TPenulis (
+    IDPenulis char(4),
+    NamaPenulis varchar(20),
+    IDBuku char(4),
+    PRIMARY KEY (IDPenulis),
+    FOREIGN KEY (IDBuku) REFERENCES TBuku(IDBuku)
+);
+
+CREATE TABLE TMeminjam (
+    IDMember char(4),
+    IDBuku char(4),
+    TanggalPeminjaman date,
+    TanggalPengembalian date,
+    FOREIGN KEY (IDMember) REFERENCES TMember(IDMember),
+    FOREIGN KEY (IDBuku) REFERENCES TBuku(IDBuku)
+);
+
+
+YYYY-MM-DD
+
+INSERT INTO TMember(IDMember, NamaMember, NoTelpon, TanggalLahir) VALUES ('M001', 'Rico', 081123435, '('M002', 'Kowalzki', 0811023985, '2000-01-01'), ('M003', 'Skipper', 081112312, '1998-02-02');
+
+background-color: #111827
+
+$stmt->execute = ([
+        $data["IDBuku"],
+        $data["JudulBuku"],
+        $data["Genre"],
+        $data["TahunTerbit"]
+    ]);
+
+    $conn = '';
+    $stmt = '';
