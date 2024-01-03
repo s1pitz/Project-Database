@@ -1,9 +1,8 @@
 <?php
-
-    require_once "database.php";
+    require_once "../database/database.php";
     if(isset($_POST["inputBtn"])){
         addBooking($_POST);
-        header("Location: show.php");
+        header("Location: ../show.php");
     }
 ?>
 
@@ -13,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     
     <title>Dashboard</title>
 </head>
@@ -22,30 +21,30 @@
     <!-- start: Sidebar -->
     <div class="fixed left-0 top-0 w-64 h-full bg-gray-900 p-4 z-50 sidebar-menu transition-transform">
         <a href="" class="flex items-center pb-4 border-b border-b-gray-800">
-            <img src="pengpustakaan.png" alt="" class="w-8 h-8 rounded object-cover">
+            <img src="../pengpustakaan.png" alt="" class="w-8 h-8 rounded object-cover">
             <span class="text-lg font-bold text-white ml-3">Pengpustakaan</span>
         </a>
         <ul class="mt-4">
             <li class="mb-1 group">
-                <a href="index.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+                <a href="../index.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                     <i class="ri-home-2-line mr-3 text-lg"></i>
                     <span class="text-sm">Member</span>
                 </a>
             </li>
             <li class="mb-1 group active">
-                <a href="input.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
+                <a href="../input.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                     <i class="ri-instance-line mr-3 text-lg"></i>
                     <span class="text-sm">Input</span>
                 </a>
             </li>
             <li class="mb-1 group">
-                <a href="update.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
+                <a href="../update.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                     <i class="ri-flashlight-line mr-3 text-lg"></i>
                     <span class="text-sm">Update</span>
                 </a>
             </li>
             <li class="mb-1 group">
-                <a href="show.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+                <a href="../show.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                     <i class="ri-settings-2-line mr-3 text-lg"></i>
                     <span class="text-sm">Show</span>
                 </a>

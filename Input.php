@@ -1,9 +1,5 @@
 <?php
 
-    require_once "database.php";
-    if(isset($_POST["inputBtn"])){
-        addBook($_POST);
-    }
 ?>
 
 <!DOCTYPE html>
@@ -77,9 +73,9 @@
                     <div class="overflow-x-auto">
                         <select name="3Types" id="3Types" onchange="nextpage(this)">
                             <option value="" hidden>Select Option</option>
-                            <option value="InputMember.php">Member</option>
-                            <option value="InputBook.php">Book</option>
-                            <option value="InputBooking.php">Booking</option>
+                            <option value="input_screens/InputMember.php">Member</option>
+                            <option value="input_screens/InputBook.php">Book</option>
+                            <option value="input_screens/InputBooking.php">Booking</option>
                         </select> <br>
                     </div>
                 </div>

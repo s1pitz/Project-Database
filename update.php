@@ -72,9 +72,9 @@
                     <div class="overflow-x-auto">
                         <select name="3Types" id="3Types" onchange="nextpage(this)">
                             <option value="" hidden>Select Option</option>
-                            <option value="UpdateMember.php">Member</option>
-                            <option value="UpdateBook.php">Book</option>
-                            <option value="UpdateBooking.php">Booking</option>
+                            <option value="update_screens/UpdateMember.php">Member</option>
+                            <option value="update_screens/UpdateBook.php">Book</option>
+                            <option value="update_screens/UpdateBooking.php">Booking</option>
                         </select> <br>
                     </div>
                 </div>
