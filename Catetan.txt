@@ -53,14 +53,4 @@ YYYY-MM-DD
 
 INSERT INTO TMember(IDMember, NamaMember, NoTelpon, TanggalLahir) VALUES ('M001', 'Rico', 081123435, '('M002', 'Kowalzki', 0811023985, '2000-01-01'), ('M003', 'Skipper', 081112312, '1998-02-02');
 
-background-color: #111827
-
-$stmt->execute = ([
-        $data["IDBuku"],
-        $data["JudulBuku"],
-        $data["Genre"],
-        $data["TahunTerbit"]
-    ]);
-
-    $conn = '';
-    $stmt = '';
+background-color: #11182
