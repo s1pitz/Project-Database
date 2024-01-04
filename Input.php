@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     
-    <title>Dashboard</title>
+    <title>Input</title>
 </head>
 <body class="text-gray-800 font-inter">
     
@@ -23,26 +23,32 @@
         <ul class="mt-4">
             <li class="mb-1 group">
                 <a href="index.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                    <i class="ri-home-2-line mr-3 text-lg"></i>
+                    <i class="ri-profile-line mr-3 text-lg"></i>
                     <span class="text-sm">Member</span>
                 </a>
             </li>
             <li class="mb-1 group active">
                 <a href="input.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
-                    <i class="ri-instance-line mr-3 text-lg"></i>
+                    <i class="ri-input-method-line mr-3 text-lg"></i>
                     <span class="text-sm">Input</span>
                 </a>
             </li>
             <li class="mb-1 group">
                 <a href="update.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
-                    <i class="ri-flashlight-line mr-3 text-lg"></i>
+                    <i class="ri-refresh-line mr-3 text-lg"></i>
                     <span class="text-sm">Update</span>
                 </a>
             </li>
             <li class="mb-1 group">
                 <a href="show.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
-                    <i class="ri-settings-2-line mr-3 text-lg"></i>
+                    <i class="ri-eye-line mr-3 text-lg"></i>
                     <span class="text-sm">Show</span>
+                </a>
+            </li>
+            <li class="mb-1 group">
+                <a href="delete.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+                    <i class="ri-delete-bin-line mr-3 text-lg"></i>
+                    <span class="text-sm">Delete</span>
                 </a>
             </li>
         </ul>

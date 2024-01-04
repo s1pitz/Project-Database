@@ -1,12 +1,19 @@
 <?php
     require_once "../database/database.php";
-    $book = [];
+    $member = [];
     if(isset($_POST["inputBtn"])){
-        $book = getDataByIDBook($_POST);
+        $member = getDataByIDMember($_POST);
     }
-    if(isset($_POST["updateBtn"])){
-        updateBook($_POST);
-        header("Location: ../show.php");
+    $booking = [];
+    if(isset($_POST["inputBtn"])){
+        $booking = getDataByIDBookingOnlyMember($_POST);
+    }
+    if(isset($_POST["deleteBtn"])){
+        deleteMember($_POST);
+        header("Location: ../index.php");
+    }
+    if(isset($_POST["cancelBtn"])){
+        header("Location: ../index.php");
     }
 ?>
 
@@ -17,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
-    <title>Dashboard</title>
+    <title>Delete Book</title>
 </head>
 <body class="text-gray-800 font-inter">
     
@@ -40,7 +47,7 @@
                     <span class="text-sm">Input</span>
                 </a>
             </li>
-            <li class="mb-1 group active">
+            <li class="mb-1 group">
                 <a href="../update.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                     <i class="ri-refresh-line mr-3 text-lg"></i>
                     <span class="text-sm">Update</span>
@@ -52,8 +59,8 @@
                     <span class="text-sm">Show</span>
                 </a>
             </li>
-            <li class="mb-1 group">
-                <a href="delete.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+            <li class="mb-1 group active">
+                <a href="../delete.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                     <i class="ri-delete-bin-line mr-3 text-lg"></i>
                     <span class="text-sm">Delete</span>
                 </a>
@@ -74,47 +81,78 @@
                     <a href="#" class="text-gray-400 hover:text-gray-600 font-medium">Dashboard</a>
                 </li>
                 <li class="text-gray-600 mr-2 font-medium">/</li>
-                <li class="text-gray-600 mr-2 font-medium">Update Data</li>
+                <li class="text-gray-600 mr-2 font-medium">Delete Data</li>
             </ul>
         </div>
         <div class="p-6">
             <div class="grid grid-cols-1 gap-6 mb-6">
                 <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
                     <div class="flex justify-between mb-4 items-start">
-                        <div class="font-medium">Update Book</div>
+                        <div class="font-medium">Delete Member</div>
                     </div>
                     <div class="overflow-x-auto">
                         <form action="" method="POST">
-                            <label for="IDBuku">Book ID</label>
-                            <input type="text" pattern="B[0-9]{3}" maxlength="4" name="IDBuku" style="border: 2px solid black; margin: 10px; required"> <br><br>
+                            <label for="IDBuku">Member ID</label>
+                            <input type="text" pattern="M[0-9]{3}" maxlength="4" name="IDMember" style="border: 2px solid black; margin: 10px; required"> <br><br>
                             <button type="submit" name="inputBtn" style="border-radius: 10px; width: 200px; height: 40px; background-color: #111827 ; color: white;">Submit</button>
                         </form>
-                        <?php if($book != NULL){ ?>
+                        <?php if($member != NULL){ ?>
                             <br><br>
                             <table class="w-full min-w-[540px]" data-tab-for="order" data-page="active">
                             <thead>
                                 <tr>
-                                    <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tl-md rounded-bl-md">Book ID</th>
-                                    <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">Judul Buku</th>
-                                    <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">Genre</th>
-                                    <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tr-md rounded-br-md">Tahun Terbit</th>
+                                    <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tl-md rounded-bl-md">Member ID</th>
+                                    <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">Nama Member</th>
+                                    <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">No. Telepon</th>
+                                    <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tr-md rounded-br-md">Tanggal Lahir</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="py-2 px-4 border-b border-b-gray-50">
                                         <div class="flex items-center">
-                                            <a href="#" class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate"><?= $book['IDBuku'] ?></a>
+                                            <a href="#" class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate"><?= $member['IDMember'] ?></a>
                                         </div>
                                     </td>
                                     <td class="py-2 px-4 border-b border-b-gray-50">
-                                        <span class="text-[13px] font-medium text-gray-400"><?= $book['JudulBuku'] ?></span>
+                                        <span class="text-[13px] font-medium text-gray-400"><?= $member['NamaMember'] ?></span>
                                     </td>
                                     <td class="py-2 px-4 border-b border-b-gray-50">
-                                        <span class="text-[13px] font-medium text-gray-400"><?= $book['Genre'] ?></span>
+                                        <span class="text-[13px] font-medium text-gray-400"><?= $member['NoTelpon'] ?></span>
                                     </td>
                                     <td class="py-2 px-4 border-b border-b-gray-50">
-                                        <span class="text-[13px] font-medium text-gray-400"><?= $book['TahunTerbit'] ?></span>
+                                        <span class="text-[13px] font-medium text-gray-400"><?php echo date("F j, Y", strtotime($member['TanggalLahir'])); ?></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <?php } ?>
+                        <?php if($booking != NULL){ ?>
+                            <br><br>
+                            <table class="w-full min-w-[540px]" data-tab-for="order" data-page="active">
+                            <thead>
+                                <tr>
+                                    <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tl-md rounded-bl-md">Member ID</th>
+                                    <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tl-md rounded-bl-md">Book ID</th>
+                                    <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">Tanggal Peminjaman</th>
+                                    <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">Tanggal Pengembalian</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-2 px-4 border-b border-b-gray-50">
+                                        <div class="flex items-center">
+                                            <a href="#" class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate"><?= $booking['IDMember'] ?></a>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4 border-b border-b-gray-50">
+                                        <span class="text-[13px] font-medium text-gray-400"><?= $booking['IDBuku'] ?></span>
+                                    </td>
+                                    <td class="py-2 px-4 border-b border-b-gray-50">
+                                        <span class="text-[13px] font-medium text-gray-400"><?php echo date("F j, Y", strtotime($booking['TanggalPeminjaman'])); ?></span>
+                                    </td>
+                                    <td class="py-2 px-4 border-b border-b-gray-50">
+                                        <span class="text-[13px] font-medium text-gray-400"><?php echo date("F j, Y", strtotime($booking['TanggalPengembalian'])); ?></span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -123,23 +161,19 @@
                     </div>
                 </div>
             </div>
-            <?php if($book != NULL){ ?>
+            <?php if($member != NULL){ ?>
                 <div class="grid grid-cols-1 gap-6 mb-6">
                     <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
                         <div class="flex justify-between mb-4 items-start">
-                            <div class="font-medium">Update <?= $book["IDBuku"] ?></div>
+                            <div class="font-medium">Delete <?= $member["IDMember"] ?></div>
                         </div>
                         <div class="overflow-x-auto">
                             <form action="" method="POST">
-                                <label for="IDBuku">Book ID</label>
-                                <input type="text" value="<?=$book["IDBuku"]?>" readonly placeholder="<?=$book["IDBuku"];?>" name="IDBuku" style="border: 2px solid black; margin: 10px; required"> <br>
-                                <label for="JudulBuku">Judul Buku</label>
-                                <input type="text" maxlength="20" name="JudulBuku" style="border: 2px solid black; margin: 10px; required"><br>
-                                <label for="Genre">Genre</label>
-                                <input type="text" maxlength="20" name="Genre" style="border: 2px solid black; margin: 10px; required"><br>
-                                <label for="TahunTerbit">Tahun Terbit</label>
-                                <input type="number" min="1600" max="2023" name="TahunTerbit" style="border: 2px solid black; margin: 10px; required"><br><br>
-                                <button type="submit" name="updateBtn" style="border-radius: 10px; width: 200px; height: 40px; background-color: #111827 ; color: white;">Submit</button>
+                                <label for="IDMember">Member ID</label>
+                                <input type="text" value="<?=$member["IDMember"]?>" readonly placeholder="<?=$member["IDMember"];?>" name="IDMember" style="border: 2px solid black; margin: 10px; required"> <br>
+                                <span class="text-sm">Are You Sure You Want to Delete All Rows?</span><br><br>
+                                <button type="submit" name="deleteBtn" style="border-radius: 10px; width: 200px; height: 40px; background-color: #111827 ; color: white;">Sure</button>
+                                <button type="submit" name="cancelBtn" style="border-radius: 10px; width: 200px; height: 40px; background-color: #111827 ; color: white;">Nope</button>
                             </form>
                         </div>
                     </div>

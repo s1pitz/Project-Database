@@ -203,6 +203,34 @@ function getDataByIDBooking($data)
     return $booking;
 }
 
+function getDataByIDBookingOnlyBook($data)
+{
+    $conn = connectToDB();
+    $stmt = $conn->prepare("SELECT * FROM TMeminjam WHERE IDBuku = ?");
+
+    $stmt -> execute([
+        $data["IDBuku"],
+    ]);
+
+    $booking = $stmt->fetch();
+    closeConnection();
+    return $booking;
+}
+
+function getDataByIDBookingOnlyMember($data)
+{
+    $conn = connectToDB();
+    $stmt = $conn->prepare("SELECT * FROM TMeminjam WHERE IDMember = ?");
+
+    $stmt -> execute([
+        $data["IDMember"],
+    ]);
+
+    $booking = $stmt->fetch();
+    closeConnection();
+    return $booking;
+}
+
 function updateBooking($data){
     $conn = connectToDB();
     $stmt = $conn->prepare("UPDATE TMeminjam SET TanggalPeminjaman = ?, TanggalPengembalian = ? WHERE IDBuku = ? AND IDMember = ?");
@@ -226,4 +254,26 @@ function deleteBook($data){
     closeConnection();
 }
 
+function deleteMember($data){
+    print_r($data);
+    $conn = connectToDB();
+
+    $stmt = $conn->prepare("DELETE FROM TMember WHERE IDMember = ?");
+    $stmt -> execute([
+        $data["IDMember"], 
+    ]);
+    closeConnection();
+}
+
+function deleteBooking($data){
+    print_r($data);
+    $conn = connectToDB();
+
+    $stmt = $conn->prepare("DELETE FROM TMeminjam WHERE IDBuku = ? AND IDMember = ?");
+    $stmt -> execute([
+        $data["IDBuku"],
+        $data["IDMember"], 
+    ]);
+    closeConnection();
+}
 ?>

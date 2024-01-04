@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2024 at 09:02 AM
+-- Generation Time: Jan 04, 2024 at 07:57 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -42,8 +42,8 @@ INSERT INTO `tbuku` (`IDBuku`, `JudulBuku`, `Genre`, `TahunTerbit`) VALUES
 ('B001', 'Harry Potter', 'Fantasy', 2010),
 ('B002', 'Oshi No Ko', 'Drama', 2020),
 ('B003', 'Goosebumps', 'Horror', 2013),
-('B005', 'Sherlock Holmes', 'Mystery', 2001),
-('B018', 'Soekarno', 'History', 1999);
+('B018', 'Soekarno', 'History', 1999),
+('B200', 'Sher', 'asdf', 2000);
 
 -- --------------------------------------------------------
 
@@ -63,11 +63,10 @@ CREATE TABLE `tmember` (
 --
 
 INSERT INTO `tmember` (`IDMember`, `NamaMember`, `NoTelpon`, `TanggalLahir`) VALUES
-('M001', 'Rico', 812392193, '2023-01-01'),
+('M001', 'Rico', 8112321300, '1999-11-11'),
 ('M002', 'Kowalzki', 811023985, '2000-01-01'),
 ('M003', 'Skipper', 81112312, '1998-02-02'),
-('M100', 'Dodi', 2147483647, '2002-10-18'),
-('M199', 'Hejon', 8213123, '2010-06-16');
+('M100', 'Dodi', 2147483647, '2002-10-18');
 
 -- --------------------------------------------------------
 
@@ -87,10 +86,10 @@ CREATE TABLE `tmeminjam` (
 --
 
 INSERT INTO `tmeminjam` (`IDMember`, `IDBuku`, `TanggalPeminjaman`, `TanggalPengembalian`) VALUES
-('M001', 'B001', '2023-12-03', '2023-12-11'),
-('M002', 'B003', '2023-12-08', '2023-12-15'),
 ('M002', 'B002', '2023-12-15', '2023-12-22'),
-('M001', 'B005', '2023-11-26', '2023-12-03');
+('M001', 'B001', '2023-12-3', '2023-12-10'),
+('M002', 'B003', '2023-12-8', '2023-12-15'),
+('M002', 'B002', '2023-12-15', '2023-12-22');
 
 --
 -- Indexes for dumped tables
@@ -112,8 +111,8 @@ ALTER TABLE `tmember`
 -- Indexes for table `tmeminjam`
 --
 ALTER TABLE `tmeminjam`
-  ADD KEY `IDMember` (`IDMember`),
-  ADD KEY `IDBuku` (`IDBuku`);
+  ADD KEY `tmeminjam_ibfk_1` (`IDMember`),
+  ADD KEY `tmeminjam_ibfk_2` (`IDBuku`);
 
 --
 -- Constraints for dumped tables
@@ -123,8 +122,8 @@ ALTER TABLE `tmeminjam`
 -- Constraints for table `tmeminjam`
 --
 ALTER TABLE `tmeminjam`
-  ADD CONSTRAINT `tmeminjam_ibfk_1` FOREIGN KEY (`IDMember`) REFERENCES `tmember` (`IDMember`),
-  ADD CONSTRAINT `tmeminjam_ibfk_2` FOREIGN KEY (`IDBuku`) REFERENCES `tbuku` (`IDBuku`);
+  ADD CONSTRAINT `tmeminjam_ibfk_1` FOREIGN KEY (`IDMember`) REFERENCES `tmember` (`IDMember`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tmeminjam_ibfk_2` FOREIGN KEY (`IDBuku`) REFERENCES `tbuku` (`IDBuku`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
