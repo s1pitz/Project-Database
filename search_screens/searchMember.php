@@ -8,50 +8,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <title>Dashboard</title>
 </head>
 <body class="text-gray-800 font-inter">
     
     <!-- start: Sidebar -->
     <div class="fixed left-0 top-0 w-64 h-full bg-gray-900 p-4 z-50 sidebar-menu transition-transform">
-        <a href="pengpustakaan.png" class="flex items-center pb-4 border-b border-b-gray-800">
-            <img src="pengpustakaan.png" alt="" class="w-8 h-8 rounded object-cover">
+        <a href="" class="flex items-center pb-4 border-b border-b-gray-800">
+            <img src="../pengpustakaan.png" alt="" class="w-8 h-8 rounded object-cover">
             <span class="text-lg font-bold text-white ml-3">Pengpustakaan</span>
         </a>
         <ul class="mt-4">
             <li class="mb-1 group">
-                <a href="index.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+                <a href="../index.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                     <i class="ri-profile-line mr-3 text-lg"></i>
                     <span class="text-sm">Member</span>
                 </a>
             </li>
             <li class="mb-1 group">
-                <a href="input.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
+                <a href="../input.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                     <i class="ri-input-method-line mr-3 text-lg"></i>
                     <span class="text-sm">Input</span>
                 </a>
             </li>
-            <li class="mb-1 group active">
-                <a href="update.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
+            <li class="mb-1 group">
+                <a href="../update.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                     <i class="ri-refresh-line mr-3 text-lg"></i>
                     <span class="text-sm">Update</span>
                 </a>
             </li>
             <li class="mb-1 group">
-                <a href="show.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+                <a href="../show.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                     <i class="ri-eye-line mr-3 text-lg"></i>
                     <span class="text-sm">Show</span>
                 </a>
             </li>
             <li class="mb-1 group">
-                <a href="delete.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+                <a href="../delete.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                     <i class="ri-delete-bin-line mr-3 text-lg"></i>
                     <span class="text-sm">Delete</span>
                 </a>
             </li>
-            <li class="mb-1 group">
-                <a href="search.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+            <li class="mb-1 group active">
+                <a href="../search.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                     <i class="ri-search-2-line mr-3 text-lg"></i>
                     <span class="text-sm">Search</span>
                 </a>
@@ -72,21 +72,21 @@
                     <a href="#" class="text-gray-400 hover:text-gray-600 font-medium">Dashboard</a>
                 </li>
                 <li class="text-gray-600 mr-2 font-medium">/</li>
-                <li class="text-gray-600 mr-2 font-medium">Update Data</li>
+                <li class="text-gray-600 mr-2 font-medium">Search</li>
             </ul>
         </div>
         <div class="p-6">
             <div class="grid grid-cols-1 gap-6 mb-6">
                 <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
                     <div class="flex justify-between mb-4 items-start">
-                        <div class="font-medium">Update Data</div>
+                        <div class="font-medium">Search Member</div>
                     </div>
                     <div class="overflow-x-auto">
+                        <span class="text-sm">What Category Do You Want to Search?</span><br><br>
                         <select name="3Types" id="3Types" onchange="nextpage(this)">
                             <option value="" hidden>Select Option</option>
-                            <option value="update_screens/UpdateMember.php">Member</option>
-                            <option value="update_screens/UpdateBook.php">Book</option>
-                            <option value="update_screens/UpdateBooking.php">Booking</option>
+                            <option value="searchMemberID.php">Member ID</option>
+                            <option value="searchMemberName.php">Member Name</option>
                         </select> <br>
                     </div>
                 </div>

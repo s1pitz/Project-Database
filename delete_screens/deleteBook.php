@@ -5,8 +5,9 @@
         $book = getDataByIDBook($_POST);
     }
     $booking = [];
+    $bookings = [];
     if(isset($_POST["inputBtn"])){
-        $booking = getDataByIDBookingOnlyBook($_POST);
+        $bookings = getDataByIDBookingOnlyBook($_POST);
     }
     if(isset($_POST["deleteBtn"])){
         deleteBook($_POST);
@@ -63,6 +64,12 @@
                 <a href="../delete.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                     <i class="ri-delete-bin-line mr-3 text-lg"></i>
                     <span class="text-sm">Delete</span>
+                </a>
+            </li>
+            <li class="mb-1 group">
+                <a href="../search.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+                    <i class="ri-search-2-line mr-3 text-lg"></i>
+                    <span class="text-sm">Search</span>
                 </a>
             </li>
         </ul>
@@ -127,7 +134,7 @@
                             </tbody>
                         </table>
                         <?php } ?>
-                        <?php if($booking != NULL){ ?>
+                        <?php if($bookings != NULL){ ?>
                             <br><br>
                             <table class="w-full min-w-[540px]" data-tab-for="order" data-page="active">
                             <thead>
@@ -139,6 +146,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php foreach ($bookings as $booking): ?> 
                                 <tr>
                                     <td class="py-2 px-4 border-b border-b-gray-50">
                                         <div class="flex items-center">
@@ -155,6 +163,7 @@
                                         <span class="text-[13px] font-medium text-gray-400"><?php echo date("F j, Y", strtotime($booking['TanggalPengembalian'])); ?></span>
                                     </td>
                                 </tr>
+                                <?php endforeach?>
                             </tbody>
                         </table>
                         <?php } ?>

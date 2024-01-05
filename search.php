@@ -1,5 +1,8 @@
 <?php
-
+    require_once "database/database.php";
+    $books = fetchAllBooks();
+    $bookings = fetchAllBookings();
+    session_destroy();
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +18,7 @@
     
     <!-- start: Sidebar -->
     <div class="fixed left-0 top-0 w-64 h-full bg-gray-900 p-4 z-50 sidebar-menu transition-transform">
-        <a href="pengpustakaan.png" class="flex items-center pb-4 border-b border-b-gray-800">
+        <a href="#" class="flex items-center pb-4 border-b border-b-gray-800">
             <img src="pengpustakaan.png" alt="" class="w-8 h-8 rounded object-cover">
             <span class="text-lg font-bold text-white ml-3">Pengpustakaan</span>
         </a>
@@ -32,7 +35,7 @@
                     <span class="text-sm">Input</span>
                 </a>
             </li>
-            <li class="mb-1 group active">
+            <li class="mb-1 group">
                 <a href="update.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                     <i class="ri-refresh-line mr-3 text-lg"></i>
                     <span class="text-sm">Update</span>
@@ -50,7 +53,7 @@
                     <span class="text-sm">Delete</span>
                 </a>
             </li>
-            <li class="mb-1 group">
+            <li class="mb-1 group active">
                 <a href="search.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                     <i class="ri-search-2-line mr-3 text-lg"></i>
                     <span class="text-sm">Search</span>
@@ -72,21 +75,21 @@
                     <a href="#" class="text-gray-400 hover:text-gray-600 font-medium">Dashboard</a>
                 </li>
                 <li class="text-gray-600 mr-2 font-medium">/</li>
-                <li class="text-gray-600 mr-2 font-medium">Update Data</li>
+                <li class="text-gray-600 mr-2 font-medium">Search</li>
             </ul>
         </div>
         <div class="p-6">
             <div class="grid grid-cols-1 gap-6 mb-6">
                 <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
                     <div class="flex justify-between mb-4 items-start">
-                        <div class="font-medium">Update Data</div>
+                        <div class="font-medium">Search Data</div>
                     </div>
                     <div class="overflow-x-auto">
                         <select name="3Types" id="3Types" onchange="nextpage(this)">
                             <option value="" hidden>Select Option</option>
-                            <option value="update_screens/UpdateMember.php">Member</option>
-                            <option value="update_screens/UpdateBook.php">Book</option>
-                            <option value="update_screens/UpdateBooking.php">Booking</option>
+                            <option value="search_screens/searchMember.php">Member</option>
+                            <option value="search_screens/searchBook.php">Book</option>
+                            <option value="search_screens/searchBooking.php">Booking</option>
                         </select> <br>
                     </div>
                 </div>

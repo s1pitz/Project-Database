@@ -212,9 +212,17 @@ function getDataByIDBookingOnlyBook($data)
         $data["IDBuku"],
     ]);
 
-    $booking = $stmt->fetch();
+    $bookings = [];
+
+    while($booking = $stmt->fetch(PDO::FETCH_ASSOC)){
+        if($booking == NULL){
+            break;
+        }
+        array_push($bookings, $booking);
+    }
+
     closeConnection();
-    return $booking;
+    return $bookings;
 }
 
 function getDataByIDBookingOnlyMember($data)
@@ -226,9 +234,17 @@ function getDataByIDBookingOnlyMember($data)
         $data["IDMember"],
     ]);
 
-    $booking = $stmt->fetch();
+    $bookings = [];
+
+    while($booking = $stmt->fetch(PDO::FETCH_ASSOC)){
+        if($booking == NULL){
+            break;
+        }
+        array_push($bookings, $booking);
+    }
+
     closeConnection();
-    return $booking;
+    return $bookings;
 }
 
 function updateBooking($data){
@@ -276,4 +292,65 @@ function deleteBooking($data){
     ]);
     closeConnection();
 }
+
+function getDataByGenre($data)
+{
+    $conn = connectToDB();
+    $stmt = $conn->prepare("SELECT * FROM TBuku WHERE Genre = ?");
+
+    $stmt -> execute([
+        $data["Genre"],
+    ]);
+
+    $books = [];
+
+    while($book = $stmt->fetch(PDO::FETCH_ASSOC)){
+        if($book == NULL){
+            break;
+        }
+        array_push($books, $book);
+    }
+
+    closeConnection();
+    return $books;
+}
+
+function getDataByTitle($data)
+{
+    $conn = connectToDB();
+    $variable = $data["JudulBuku"];
+    $stmt = $conn->query("SELECT * FROM TBuku WHERE JudulBuku LIKE '%".$variable."%'");
+
+    $books = [];
+
+    while($book = $stmt->fetch(PDO::FETCH_ASSOC)){
+        if($book == NULL){
+            break;
+        }
+        array_push($books, $book);
+    }
+
+    closeConnection();
+    return $books;
+}
+
+function getDataByMemberName($data)
+{
+    $conn = connectToDB();
+    $variable = $data["NamaMember"];
+    $stmt = $conn->query("SELECT * FROM TMember WHERE NamaMember LIKE '%".$variable."%'");
+    $members = [];
+
+    while($member = $stmt->fetch(PDO::FETCH_ASSOC)){
+        if($member == NULL){
+            break;
+        }
+        array_push($members, $member);
+    }
+
+    closeConnection();
+    return $members;
+}
+
 ?>
+

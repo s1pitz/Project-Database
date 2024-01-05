@@ -1,10 +1,9 @@
 <?php
-
     require_once "../database/database.php";
+    $booking = [];
+    $bookings = [];
     if(isset($_POST["inputBtn"])){
-        // echo "<script> alert('beh');</script>";
-        addBook($_POST);
-        header("Location: ../show.php");
+        $bookings = getDataByIDBookingOnlyBook($_POST);
     }
 ?>
 
@@ -15,7 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
-    
     <title>Dashboard</title>
 </head>
 <body class="text-gray-800 font-inter">
@@ -33,7 +31,7 @@
                     <span class="text-sm">Member</span>
                 </a>
             </li>
-            <li class="mb-1 group active">
+            <li class="mb-1 group">
                 <a href="../input.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                     <i class="ri-input-method-line mr-3 text-lg"></i>
                     <span class="text-sm">Input</span>
@@ -57,7 +55,7 @@
                     <span class="text-sm">Delete</span>
                 </a>
             </li>
-            <li class="mb-1 group">
+            <li class="mb-1 group active">
                 <a href="../search.php" class="flex items-center py-2 px-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
                     <i class="ri-search-2-line mr-3 text-lg"></i>
                     <span class="text-sm">Search</span>
@@ -70,7 +68,7 @@
 
     <!-- start: Main -->
     <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-50 min-h-screen transition-all main">
-        <div class="py-2 px-6 bg-white flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
+    <div class="py-2 px-6 bg-white flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
             <button type="button" class="text-lg text-gray-600 sidebar-toggle">
                 <i class="ri-menu-line"></i>
             </button>
@@ -79,27 +77,55 @@
                     <a href="#" class="text-gray-400 hover:text-gray-600 font-medium">Dashboard</a>
                 </li>
                 <li class="text-gray-600 mr-2 font-medium">/</li>
-                <li class="text-gray-600 mr-2 font-medium">Input Data</li>
+                <li class="text-gray-600 mr-2 font-medium">Search</li>
             </ul>
         </div>
         <div class="p-6">
             <div class="grid grid-cols-1 gap-6 mb-6">
                 <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
                     <div class="flex justify-between mb-4 items-start">
-                        <div class="font-medium">Input Buku</div>
+                        <div class="font-medium">Search Booking By Book ID</div>
                     </div>
                     <div class="overflow-x-auto">
                         <form action="" method="POST">
-                            <label for="IDBuku"> Book ID</label>
-                            <input type="text" pattern="B[0-9]{3}" maxlength="4" name="IDBuku" style="border: 2px solid black; margin: 10px; required"> <br>
-                            <label for="JudulBuku"> JudulBuku</label>
-                            <input type="text" maxlength="20" name="JudulBuku" style="border: 2px solid black; margin: 10px; required"><br>
-                            <label for="Genre">Genre</label>
-                            <input type="text" maxlength="20" name="Genre" style="border: 2px solid black; margin: 10px; required"><br>
-                            <label for="TahunTerbit">TahunTerbit</label>
-                            <input type="number" min="1600" max="2023" name="TahunTerbit" style="border: 2px solid black; margin: 10px; required"><br><br>
+                            <label for="IDBuku">Book ID</label>
+                            <input type="text" pattern="B[0-9]{3}" maxlength="4" name="IDBuku" style="border: 2px solid black; margin: 10px; required"> <br><br>
                             <button type="submit" name="inputBtn" style="border-radius: 10px; width: 200px; height: 40px; background-color: #111827 ; color: white;">Submit</button>
                         </form>
+                        <?php if($bookings != NULL){ ?>
+                            <br><br>
+                            <table class="w-full min-w-[540px]" data-tab-for="order" data-page="active">
+                            <thead>
+                                <tr>
+                                    <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tl-md rounded-bl-md">Book ID</th>
+                                    <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">Judul Buku</th>
+                                    <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">Genre</th>
+                                    <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tr-md rounded-br-md">Tahun Terbit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($bookings as $booking): ?> 
+                                <tr>
+                                    <td class="py-2 px-4 border-b border-b-gray-50">
+                                        <span class="text-[13px] font-medium text-gray-400"><?= $booking['IDMember'] ?></span>
+                                    </td>
+                                    <td class="py-2 px-4 border-b border-b-gray-50">
+                                        <span class="text-[13px] font-medium text-gray-400"><?= $booking['IDBuku'] ?></span>
+                                    </td>
+                                    <td class="py-2 px-4 border-b border-b-gray-50">
+                                        <span class="text-[13px] font-medium text-gray-400"><?php echo date("F j, Y", strtotime($booking['TanggalPeminjaman'])); ?></span>
+                                    </td>
+                                    <td class="py-2 px-4 border-b border-b-gray-50">
+                                        <span class="text-[13px] font-medium text-gray-400"><?php echo date("F j, Y", strtotime($booking['TanggalPengembalian'])); ?></span>
+                                    </td>
+                                </tr>
+                                <?php endforeach?>
+                            </tbody>
+                        </table>
+                        <?php } ?>
+                        <?php if($bookings == NULL && isset($_POST["inputBtn"])){ ?>
+                            <br><span class="text-sm">Book Not Found</span>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -110,5 +136,10 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="dist/js/script.js"></script>
+    <script type="text/javascript">
+        function nextpage(select){
+            window.location = select.value;
+        }
+    </script>
 </body>
 </html>

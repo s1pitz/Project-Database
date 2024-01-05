@@ -88,8 +88,7 @@ CREATE TABLE `tmeminjam` (
 INSERT INTO `tmeminjam` (`IDMember`, `IDBuku`, `TanggalPeminjaman`, `TanggalPengembalian`) VALUES
 ('M002', 'B002', '2023-12-15', '2023-12-22'),
 ('M001', 'B001', '2023-12-3', '2023-12-10'),
-('M002', 'B003', '2023-12-8', '2023-12-15'),
-('M002', 'B002', '2023-12-15', '2023-12-22');
+('M002', 'B003', '2023-12-8', '2023-12-15');
 
 --
 -- Indexes for dumped tables
